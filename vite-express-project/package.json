@@ -2,7 +2,7 @@
   "name": "vite-express-project",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type":"module",
   "scripts": {
     "dev": "nodemon src/server/main.js -w src/server",
     "start": "NODE_ENV=production node src/server/main.js",
