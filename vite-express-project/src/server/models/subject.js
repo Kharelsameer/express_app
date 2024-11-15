@@ -1,19 +1,37 @@
 import prisma from "../prisma.js";
 
 export async function getAll(){
-   const result = await prisma.subject.getAll();
+   const result = await prisma.subject.findMany({
+    include: {
+        student: {
+            select:{
+                firstName: true,
+                lastName:true
+            }
+        },
+    }
+   });
    return result;
 
 }
 
 export async function getById(id){
 
-    const result = await prisma.subject.getById(id);
+    const result = await prisma.subject.findFirst({
+        where: {id: parseInt(id)},
+        include: {
+            student: {
+                select:{
+                    firstName: true,
+                    lastName:true
+                }
+            },
+        }});
     return result;
 }
 
 export async function add(data) {
-    const result = await prisma.subject.create(data);
+    const result = await prisma.subject.create({data});
     return result;
 }
 

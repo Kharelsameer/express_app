@@ -1,5 +1,5 @@
 import express from "express";
-import { getById, update } from "../models/subject.js";
+import { getById, update, getAll, add, remove } from "../models/subject.js";
 
 const route = express.Router();
 
@@ -25,9 +25,6 @@ route.get('/:id', async (req, res) => {
 route.post('/', async (req, res) => {
     const subject = req.body;
     const newSubject = await add(subject);
-    subjects.push(newSubject);
-
-    writeDataToFile(FILE_PATH, subjects);
     res.json({ data: newSubject });
 });
 

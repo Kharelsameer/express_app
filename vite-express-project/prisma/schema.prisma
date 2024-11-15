@@ -19,6 +19,8 @@ model Student {
   lastName  String
   email String @unique
  mobile String?
+
+ subjects Subject[]
 }
 
 model Subject {
@@ -27,6 +29,10 @@ model Subject {
   intro String?
   fee Int
   courseBook String
-  during String
+  duration String
   instructor String
+
+  studentId Int
+  student Student @relation(fields: [studentId], references:[id]) 
+
 }
